@@ -1630,6 +1630,8 @@ class BaseSession(ISession):
         )
 
     def execute_scheme(self, yql_text, settings=None):
+        # TODO: Revert changes
+        print("execute_schema", yql_text)
         return self._driver(
             _session_impl.execute_scheme_request_factory(self._state, yql_text),
             _apis.TableService.Stub,

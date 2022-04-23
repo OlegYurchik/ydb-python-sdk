@@ -89,7 +89,10 @@ class Cursor(object):
         self._rows_prefetched = None
 
     def execute(self, sql, parameters=None):
+        # TODO: Revert changes
+        print("execute", sql, parameters)
         fsql = render_sql(sql, parameters)
+        print("execute", fsql)
         self.logger.debug("execute sql: %s", fsql)
         try:
             chunks = self.connection.driver.table_client.scan_query(fsql)

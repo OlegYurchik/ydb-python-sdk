@@ -18,9 +18,9 @@ class DatabaseWrapper(BaseDatabaseWrapper):
     display_name = "YDB"
 
     data_types = {
-        "AutoField": "Uint32",
-        "BigAutoField": "Uint64",
-        "SmallAutoField": "Uint8",
+        "AutoField": "String",
+        "BigAutoField": "String",
+        "SmallAutoField": "String",
 
         "BooleanField": "Bool",
         "NullBooleanField": "Bool",
@@ -61,12 +61,6 @@ class DatabaseWrapper(BaseDatabaseWrapper):
     SchemaEditorClass = DatabaseSchemaEditor
     Database = Database
 
-    data_types_suffix = {}  # default
-    data_type_check_constraints = {}  # default
-    ops = None  # default
-
-    queries_limit = 9000  # default
-
     # Connections and cursors
     def get_connection_params(self):
         host = self.settings_dict["HOST"]
@@ -82,7 +76,7 @@ class DatabaseWrapper(BaseDatabaseWrapper):
         return connect(**conn_params)
 
     def init_connection_state(self):
-        raise NotImplementedError
+        pass
 
     def create_cursor(self, name=None) -> Cursor:
         return self.connection.cursor()
